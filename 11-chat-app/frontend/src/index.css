@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Remove ALL React default backgrounds/images */
+* {
+  background-image: none !important;
+}
+
+.App-logo, .App-logo-spin {
+  display: none !important;
+}
+
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: none !important;
+}
+
+.input, .btn {
+  @apply border p-2 w-full rounded;
+}
+
+.btn {
+  @apply bg-blue-500 text-white p-2 rounded;
+}
