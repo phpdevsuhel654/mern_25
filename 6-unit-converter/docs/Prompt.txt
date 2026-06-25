@@ -1,0 +1,9 @@
+I want to create the following project step by step, 
+
+Unit Converter: A tool for converting measurements like length, weight, and temperature in real-time. 
+	- Back-end as Node.js and front-end with React.js. 
+	- No need to store data in database. 
+	- Use backend as back-end folder name and frontend as front-end folder name.
+	- You should take best architechture for this system. 
+	- No need of user authentication feature.
+	- Use minimum token

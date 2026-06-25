@@ -2,6 +2,17 @@
 
 A production-quality real-time unit conversion application built with React.js and Node.js/Express.
 
+## Documentation
+
+Detailed documentation is available in the docs folder:
+
+- [Docs Index](./docs/README.md)
+- [Getting Started](./docs/getting-started.md)
+- [Architecture](./docs/architecture.md)
+- [API Reference](./docs/api-reference.md)
+- [Testing Guide](./docs/testing.md)
+- [Deployment Guide](./docs/deployment.md)
+
 ## Features
 
 - **Real-time conversion** across three categories: length, weight, and temperature
