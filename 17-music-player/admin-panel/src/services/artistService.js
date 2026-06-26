@@ -1,0 +1,20 @@
+import httpClient from '../api/httpClient';
+
+export const artistService = {
+  list: async () => {
+    const { data } = await httpClient.get('/artists', { params: { limit: 200 } });
+    return data.data.items || [];
+  },
+  create: async (payload) => {
+    const { data } = await httpClient.post('/artists', payload);
+    return data.data.artist;
+  },
+  update: async (id, payload) => {
+    const { data } = await httpClient.patch(`/artists/${id}`, payload);
+    return data.data.artist;
+  },
+  remove: async (id) => {
+    await httpClient.delete(`/artists/${id}`);
+    return true;
+  }
+};

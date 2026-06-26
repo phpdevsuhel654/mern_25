@@ -7,9 +7,15 @@ import { useAdminAuth } from '../context/AdminAuthContext';
 
 const AdminLayout = lazy(() => import('../layouts/AdminLayout'));
 const AdminLoginPage = lazy(() => import('../pages/AdminLoginPage'));
+const AlbumManagementPage = lazy(() => import('../pages/AlbumManagementPage'));
+const ArtistManagementPage = lazy(() => import('../pages/ArtistManagementPage'));
 const DashboardPage = lazy(() => import('../pages/DashboardPage'));
-const GenericManagementPage = lazy(() => import('../pages/GenericManagementPage'));
+const GenreManagementPage = lazy(() => import('../pages/GenreManagementPage'));
+const PlaylistManagementPage = lazy(() => import('../pages/PlaylistManagementPage'));
 const SongManagementPage = lazy(() => import('../pages/SongManagementPage'));
+const StatsPage = lazy(() => import('../pages/StatsPage'));
+const UploadManagementPage = lazy(() => import('../pages/UploadManagementPage'));
+const UserManagementPage = lazy(() => import('../pages/UserManagementPage'));
 
 const LoginRedirect = ({ children }) => {
   const { isAuthenticated } = useAdminAuth();
@@ -41,13 +47,13 @@ const AdminRouter = () => {
         >
           <Route path={ADMIN_ROUTES.dashboard} element={<DashboardPage />} />
           <Route path={ADMIN_ROUTES.songs} element={<SongManagementPage />} />
-          <Route path={ADMIN_ROUTES.artists} element={<GenericManagementPage title="Artist Management" description="Create/edit artists and artist metadata." />} />
-          <Route path={ADMIN_ROUTES.albums} element={<GenericManagementPage title="Album Management" description="Manage album catalog and cover image metadata." />} />
-          <Route path={ADMIN_ROUTES.genres} element={<GenericManagementPage title="Genre Management" description="Manage genres and classification data." />} />
-          <Route path={ADMIN_ROUTES.playlists} element={<GenericManagementPage title="Playlist Monitoring" description="Monitor platform playlists and moderation state." />} />
-          <Route path={ADMIN_ROUTES.users} element={<GenericManagementPage title="User Management" description="Manage users, status, and role assignments." />} />
-          <Route path={ADMIN_ROUTES.uploads} element={<GenericManagementPage title="Uploads" description="Upload music files and cover images." />} />
-          <Route path={ADMIN_ROUTES.stats} element={<GenericManagementPage title="System Statistics" description="View system-wide activity and playback metrics." />} />
+          <Route path={ADMIN_ROUTES.artists} element={<ArtistManagementPage />} />
+          <Route path={ADMIN_ROUTES.albums} element={<AlbumManagementPage />} />
+          <Route path={ADMIN_ROUTES.genres} element={<GenreManagementPage />} />
+          <Route path={ADMIN_ROUTES.playlists} element={<PlaylistManagementPage />} />
+          <Route path={ADMIN_ROUTES.users} element={<UserManagementPage />} />
+          <Route path={ADMIN_ROUTES.uploads} element={<UploadManagementPage />} />
+          <Route path={ADMIN_ROUTES.stats} element={<StatsPage />} />
         </Route>
 
         <Route path="*" element={<Navigate to={ADMIN_ROUTES.dashboard} replace />} />

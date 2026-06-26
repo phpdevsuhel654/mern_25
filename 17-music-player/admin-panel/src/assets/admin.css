@@ -104,11 +104,13 @@ button {
 }
 
 input,
-select {
+select,
+textarea {
   border: 1px solid var(--line);
   border-radius: 10px;
   padding: 0.55rem 0.65rem;
   width: 100%;
+  font-family: inherit;
 }
 
 .song-table {
@@ -141,6 +143,24 @@ select {
 
 .error-text {
   color: var(--danger);
+}
+
+.helper-text {
+  color: var(--muted);
+  margin: 0;
+}
+
+.row-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.section-subtitle {
+  color: var(--muted);
+  margin-top: -0.35rem;
+  margin-bottom: 0.8rem;
 }
 
 @media (max-width: 900px) {

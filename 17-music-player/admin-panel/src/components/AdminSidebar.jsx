@@ -8,7 +8,9 @@ const AdminSidebar = () => {
     <aside className="admin-sidebar">
       <h2>Admin</h2>
       <nav>
-        <NavLink to={ADMIN_ROUTES.dashboard}>Dashboard</NavLink>
+        <NavLink to={ADMIN_ROUTES.dashboard} end>
+          Dashboard
+        </NavLink>
         <NavLink to={ADMIN_ROUTES.songs}>Songs</NavLink>
         <NavLink to={ADMIN_ROUTES.artists}>Artists</NavLink>
         <NavLink to={ADMIN_ROUTES.albums}>Albums</NavLink>

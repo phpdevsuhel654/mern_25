@@ -1,41 +1,47 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { listPublicPlaylists } from '../services/playlistService';
-import { listSongs } from '../services/songService';
+import { loadAdminStats } from '../services/statsService';
 
 const DashboardPage = () => {
-  const [songs, setSongs] = useState([]);
-  const [playlists, setPlaylists] = useState([]);
+  const [stats, setStats] = useState(null);
 
   useEffect(() => {
     const load = async () => {
-      const [songsData, playlistsData] = await Promise.all([
-        listSongs({ limit: 100, isActive: true }),
-        listPublicPlaylists({ limit: 100 })
-      ]);
-
-      setSongs(songsData.items || []);
-      setPlaylists(playlistsData.items || []);
+      const data = await loadAdminStats();
+      setStats(data);
     };
 
-    load().catch(() => {});
+    load().catch(() => {
+      setStats({
+        songs: 0,
+        playlists: 0,
+        artists: 0,
+        users: 0,
+        uploads: 0,
+        totalCatalog: 0
+      });
+    });
   }, []);
 
   const cards = useMemo(() => {
-    const localSongs = songs.filter((s) => (s.sourceType || s.source_type) === 'local').length;
-    const externalSongs = songs.filter((s) => (s.sourceType || s.source_type) === 'external').length;
+    if (!stats) {
+      return [];
+    }
 
     return [
-      { label: 'Active Songs', value: songs.length },
-      { label: 'Public Playlists', value: playlists.length },
-      { label: 'Local Media', value: localSongs },
-      { label: 'External Sources', value: externalSongs }
+      { label: 'Songs', value: stats.songs },
+      { label: 'Playlists', value: stats.playlists },
+      { label: 'Artists', value: stats.artists },
+      { label: 'Users', value: stats.users },
+      { label: 'Uploads', value: stats.uploads },
+      { label: 'Catalog Index', value: stats.totalCatalog }
     ];
-  }, [songs, playlists]);
+  }, [stats]);
 
   return (
     <section>
       <h1>Dashboard</h1>
+      <p className="section-subtitle">Central admin overview across catalog, users, and content operations.</p>
       <div className="metrics-grid">
         {cards.map((card) => (
           <article key={card.label} className="panel metric-card">
@@ -46,7 +52,7 @@ const DashboardPage = () => {
       </div>
       <article className="panel">
         <h3>System Snapshot</h3>
-        <p>Metrics currently reflect available backend endpoints from implemented phases.</p>
+        <p>Live metrics are sourced from backend APIs where available and local module persistence for pending backend endpoints.</p>
       </article>
     </section>
   );
