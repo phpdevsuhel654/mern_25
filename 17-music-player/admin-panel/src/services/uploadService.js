@@ -1,8 +1,9 @@
 import httpClient from '../api/httpClient';
+import { ADMIN_PAGE_LIMIT } from '../constants/pagination';
 
 export const uploadService = {
   list: async () => {
-    const { data } = await httpClient.get('/uploads');
+    const { data } = await httpClient.get('/uploads', { params: { limit: ADMIN_PAGE_LIMIT } });
     return data.data.items || [];
   },
   create: async (payload) => {

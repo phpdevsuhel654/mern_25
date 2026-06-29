@@ -7,6 +7,8 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
+    "seed": "node seed.js",
+    "reset-db": "node reset-db.js",
     "lint": "echo \"Linting setup will be added in a later phase\"",
     "test": "vitest run",
     "test:watch": "vitest"

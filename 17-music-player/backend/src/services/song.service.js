@@ -167,7 +167,7 @@ const listSongs = async (queryParams) => {
     albumId: queryParams.albumId ? Number(queryParams.albumId) : null,
     genreId: queryParams.genreId ? Number(queryParams.genreId) : null,
     sourceType: queryParams.sourceType ? String(queryParams.sourceType).trim() : null,
-    isActive: toBoolean(queryParams.isActive, true)
+    isActive: toBoolean(queryParams.isActive, null)
   };
 
   const { whereClause, values } = buildWhere(filters);

@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
+import { ADMIN_PAGE_LIMIT } from '../constants/pagination';
 import { listPublicPlaylists } from '../services/playlistService';
 
 const PlaylistManagementPage = () => {
@@ -8,7 +9,7 @@ const PlaylistManagementPage = () => {
 
   const loadPlaylists = async () => {
     setFeedback('');
-    const data = await listPublicPlaylists({ limit: 200 });
+    const data = await listPublicPlaylists({ limit: ADMIN_PAGE_LIMIT });
     setPlaylists(data.items || []);
   };
 

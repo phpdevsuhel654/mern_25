@@ -3,9 +3,11 @@ import { Link, NavLink } from 'react-router-dom';
 
 import { APP_ROUTES } from '../constants/appRoutes';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../hooks/useTheme';
 
 const AppHeader = () => {
   const { user, logout } = useAuth();
+  const { isDarkTheme, toggleTheme } = useTheme();
 
   return (
     <header className="app-header">
@@ -21,6 +23,9 @@ const AppHeader = () => {
 
       <div className="header-user">
         <span>{user?.username || 'User'}</span>
+        <button className="theme-toggle" onClick={toggleTheme}>
+          {isDarkTheme ? 'White Theme' : 'Black Theme'}
+        </button>
         <button onClick={logout}>Logout</button>
       </div>
     </header>

@@ -17,6 +17,7 @@ const AdminSidebar = () => {
         <NavLink to={ADMIN_ROUTES.genres}>Genres</NavLink>
         <NavLink to={ADMIN_ROUTES.playlists}>Playlists</NavLink>
         <NavLink to={ADMIN_ROUTES.users}>Users</NavLink>
+        <NavLink to={ADMIN_ROUTES.profile}>My Profile</NavLink>
         <NavLink to={ADMIN_ROUTES.uploads}>Uploads</NavLink>
         <NavLink to={ADMIN_ROUTES.stats}>Stats</NavLink>
       </nav>

@@ -7,6 +7,7 @@ export const ADMIN_ROUTES = {
   genres: '/genres',
   playlists: '/playlists',
   users: '/users',
+  profile: '/profile',
   uploads: '/uploads',
   stats: '/stats'
 };

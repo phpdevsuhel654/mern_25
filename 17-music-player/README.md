@@ -30,3 +30,20 @@ Current status:
 - Phase 11 completed (lazy-loaded route code splitting, vendor chunking, and render optimization in frontend/admin)
 - Phase 12 completed (Dockerized full stack deployment with compose orchestration and healthchecks)
 - Core phase implementation complete
+
+## Setup & Test Credentials
+
+After running `npm run reset-db` in the backend directory, the database is populated with sample data. Use the following credentials to login:
+
+### Admin Panel (http://localhost:5175/)
+- **Email**: admin@example.com
+- **Password**: Admin@123
+
+### User App (http://localhost:5173/)
+- **Email**: john@example.com
+- **Password**: Admin@123
+
+Additional test users available:
+- mike@example.com / Admin@123
+- sarah@example.com / Admin@123
+- test@example.com / Admin@123

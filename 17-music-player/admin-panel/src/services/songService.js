@@ -1,7 +1,13 @@
 import httpClient from '../api/httpClient';
+import { ADMIN_PAGE_LIMIT } from '../constants/pagination';
 
 export const listSongs = async (params = {}) => {
-  const { data } = await httpClient.get('/songs', { params });
+  const { data } = await httpClient.get('/songs', {
+    params: {
+      limit: ADMIN_PAGE_LIMIT,
+      ...params
+    }
+  });
   return data.data;
 };
 

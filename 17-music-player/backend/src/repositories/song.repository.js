@@ -123,15 +123,17 @@ const setActiveStatus = async (songId, isActive) => {
 const list = async ({ whereClause, values, sortBy, sortOrder, limit, offset }) => {
   const column = SORT_COLUMN_MAP[sortBy] || SORT_COLUMN_MAP.createdAt;
   const order = sortOrder === 'ASC' ? 'ASC' : 'DESC';
+  const safeLimit = Number.isFinite(limit) ? Math.max(1, Math.floor(limit)) : 20;
+  const safeOffset = Number.isFinite(offset) ? Math.max(0, Math.floor(offset)) : 0;
 
   const rows = await query(
     `
       ${BASE_SONG_SELECT}
       ${whereClause}
       ORDER BY ${column} ${order}
-      LIMIT ? OFFSET ?
+      LIMIT ${safeLimit} OFFSET ${safeOffset}
     `,
-    [...values, limit, offset]
+    [...values]
   );
 
   return rows;

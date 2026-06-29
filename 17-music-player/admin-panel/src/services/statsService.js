@@ -1,4 +1,5 @@
 import httpClient from '../api/httpClient';
+import { ADMIN_PAGE_LIMIT } from '../constants/pagination';
 import { listPublicPlaylists } from './playlistService';
 import { listSongs } from './songService';
 
@@ -17,8 +18,8 @@ export const loadAdminStats = async () => {
     const { data } = await httpClient.get('/stats/overview');
     return data.data;
   } catch (_error) {
-    const songsData = await safeCount(() => listSongs({ limit: 300 }));
-    const playlistsData = await safeCount(() => listPublicPlaylists({ limit: 300 }));
+    const songsData = await safeCount(() => listSongs({ limit: ADMIN_PAGE_LIMIT }));
+    const playlistsData = await safeCount(() => listPublicPlaylists({ limit: ADMIN_PAGE_LIMIT }));
 
     return {
       songs: songsData,

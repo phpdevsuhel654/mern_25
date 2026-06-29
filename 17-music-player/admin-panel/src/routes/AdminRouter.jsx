@@ -16,6 +16,7 @@ const SongManagementPage = lazy(() => import('../pages/SongManagementPage'));
 const StatsPage = lazy(() => import('../pages/StatsPage'));
 const UploadManagementPage = lazy(() => import('../pages/UploadManagementPage'));
 const UserManagementPage = lazy(() => import('../pages/UserManagementPage'));
+const UserProfilePage = lazy(() => import('../pages/UserProfilePage'));
 
 const LoginRedirect = ({ children }) => {
   const { isAuthenticated } = useAdminAuth();
@@ -52,6 +53,7 @@ const AdminRouter = () => {
           <Route path={ADMIN_ROUTES.genres} element={<GenreManagementPage />} />
           <Route path={ADMIN_ROUTES.playlists} element={<PlaylistManagementPage />} />
           <Route path={ADMIN_ROUTES.users} element={<UserManagementPage />} />
+          <Route path={ADMIN_ROUTES.profile} element={<UserProfilePage />} />
           <Route path={ADMIN_ROUTES.uploads} element={<UploadManagementPage />} />
           <Route path={ADMIN_ROUTES.stats} element={<StatsPage />} />
         </Route>
