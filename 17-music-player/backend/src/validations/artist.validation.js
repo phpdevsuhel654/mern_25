@@ -14,7 +14,7 @@ const listArtistsValidation = [
 const createArtistValidation = [
   body('name').trim().isLength({ min: 1, max: 150 }).withMessage('name is required and max 150 chars'),
   body('bio').optional({ nullable: true }).isString().isLength({ max: 4000 }).withMessage('bio max length is 4000'),
-  body('imageUrl').optional({ nullable: true }).isURL().isLength({ max: 500 }).withMessage('imageUrl must be a valid URL'),
+  body('imageUrl').optional({ nullable: true }).isString().isLength({ max: 500 }).withMessage('imageUrl max length is 500'),
   body('country').optional({ nullable: true }).isString().isLength({ max: 80 }).withMessage('country max length is 80'),
   body('isActive').optional().isBoolean().withMessage('isActive must be boolean')
 ];
@@ -23,7 +23,7 @@ const updateArtistValidation = [
   ...idParamValidation,
   body('name').optional().trim().isLength({ min: 1, max: 150 }).withMessage('name max length is 150'),
   body('bio').optional({ nullable: true }).isString().isLength({ max: 4000 }).withMessage('bio max length is 4000'),
-  body('imageUrl').optional({ nullable: true }).isURL().isLength({ max: 500 }).withMessage('imageUrl must be a valid URL'),
+  body('imageUrl').optional({ nullable: true }).isString().isLength({ max: 500 }).withMessage('imageUrl max length is 500'),
   body('country').optional({ nullable: true }).isString().isLength({ max: 80 }).withMessage('country max length is 80'),
   body('isActive').optional().isBoolean().withMessage('isActive must be boolean')
 ];

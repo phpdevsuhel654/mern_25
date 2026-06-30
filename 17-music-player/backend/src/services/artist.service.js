@@ -78,11 +78,13 @@ const listArtists = async (queryParams) => {
   const page = Math.max(Number(queryParams.page) || 1, 1);
   const limit = Math.min(Math.max(Number(queryParams.limit) || 20, 1), 100);
   const offset = (page - 1) * limit;
+  const sortBy = queryParams.sortBy || 'created_at';
+  const sortOrder = queryParams.sortOrder || 'DESC';
 
   const { whereClause, values } = buildWhere(queryParams);
 
   const [items, total] = await Promise.all([
-    artistRepository.list({ whereClause, values, limit, offset }),
+    artistRepository.list({ whereClause, values, limit, offset, sortBy, sortOrder }),
     artistRepository.count({ whereClause, values })
   ]);
 

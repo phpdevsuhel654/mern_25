@@ -2,6 +2,9 @@
 
 const { query } = require('../config/db');
 
+const ALLOWED_SORT_COLUMNS = ['id', 'name', 'slug', 'country', 'is_active', 'created_at', 'updated_at'];
+const ALLOWED_SORT_ORDERS = ['ASC', 'DESC'];
+
 const findById = async (artistId) => {
   const rows = await query('SELECT * FROM artists WHERE id = ? LIMIT 1', [artistId]);
   return rows[0] || null;
@@ -12,13 +15,17 @@ const findBySlug = async (slug) => {
   return rows[0] || null;
 };
 
-const list = async ({ whereClause, values, limit, offset }) => {
+const list = async ({ whereClause, values, limit, offset, sortBy = 'created_at', sortOrder = 'DESC' }) => {
+  // Prevent SQL injection by validating sort parameters
+  const sanitizedSortBy = ALLOWED_SORT_COLUMNS.includes(sortBy) ? sortBy : 'created_at';
+  const sanitizedSortOrder = ALLOWED_SORT_ORDERS.includes(sortOrder.toUpperCase()) ? sortOrder.toUpperCase() : 'DESC';
+
   const rows = await query(
     `
       SELECT id, name, slug, bio, image_url, country, is_active, created_at, updated_at
       FROM artists
       ${whereClause}
-      ORDER BY created_at DESC
+      ORDER BY ${sanitizedSortBy} ${sanitizedSortOrder}
       LIMIT ? OFFSET ?
     `,
     [...values, limit, offset]

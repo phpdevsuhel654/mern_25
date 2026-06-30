@@ -46,6 +46,20 @@ app.use(
 app.use(express.json({ limit: '1mb' }));
 app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 
+// Middleware to allow CORS for static uploads
+app.use('/uploads', (req, res, next) => {
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
+	res.header('Access-Control-Allow-Headers', 'Content-Type');
+	res.header('Cross-Origin-Resource-Policy', 'cross-origin');
+	if (req.method === 'OPTIONS') {
+		return res.sendStatus(200);
+	}
+	next();
+});
+
+app.use('/uploads', express.static(require('path').join(__dirname, '../uploads')));
+
 app.use(env.apiPrefix, routes);
 
 app.use(notFound);

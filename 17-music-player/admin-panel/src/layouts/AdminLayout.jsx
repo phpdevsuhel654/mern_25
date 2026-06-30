@@ -21,11 +21,37 @@ const AdminLayout = () => {
               <p>{admin?.email}</p>
             </div>
           </Link>
-          <div className="row-actions">
-            <button className="theme-toggle" onClick={toggleTheme}>
-              {isDarkTheme ? 'White Theme' : 'Black Theme'}
-            </button>
-            <button onClick={logout}>Logout</button>
+          <div className="row-actions" style={{ gap: '1rem', flexWrap: 'nowrap', whiteSpace: 'nowrap' }}>
+            <Link
+              to="#"
+              onClick={(e) => {
+                e.preventDefault();
+                toggleTheme();
+              }}
+              style={{
+                textDecoration: 'none',
+                color: 'inherit',
+                cursor: 'pointer',
+                fontSize: '0.95rem'
+              }}
+            >
+              {isDarkTheme ? 'Light Theme' : 'Dark Theme'}
+            </Link>
+            <Link
+              to="#"
+              onClick={(e) => {
+                e.preventDefault();
+                logout();
+              }}
+              style={{
+                textDecoration: 'none',
+                color: 'inherit',
+                cursor: 'pointer',
+                fontSize: '0.95rem'
+              }}
+            >
+              Logout
+            </Link>
           </div>
         </header>
         <Outlet />
